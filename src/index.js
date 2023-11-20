@@ -7,7 +7,7 @@ import axios from "axios";
 import { Provider } from "react-redux";
 import { store } from "./store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-axios.defaults.baseURL = "http://localhost:7080";
+axios.defaults.baseURL = "https://moviebackend4.onrender.com";
 
 root.render(
   <React.StrictMode>
