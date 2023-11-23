@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import React, { Fragment, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   deleteBooking,
   getUserBooking,
@@ -7,6 +8,7 @@ import {
 } from "../api-helpers/helpers";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
+  Button,
   IconButton,
   List,
   ListItem,
@@ -14,9 +16,11 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
   const [user, setUser] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     getUserBooking()
       .then((res) => setBookings(res.bookings))
@@ -31,6 +35,11 @@ const UserProfile = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+  const handleDel = (data) => {
+    const userId = data.id;
+    navigate(`/delete/${userId}`);
+  }
+  
   return (
     <Box width={"100%"} display="flex">
       <Fragment>
@@ -64,6 +73,19 @@ const UserProfile = () => {
               borderRadius={6}
             >
               Email: {user.email}
+            </Typography>
+            
+            <Typography
+              mt={1}
+              padding={1}
+              width={"auto"}
+              textAlign={"center"}
+              border={"1px solid #ccc"}
+              borderRadius={6}
+            >
+              <Button onClick={() => handleDel({ id : user._id })}>
+                Delete
+              </Button>
             </Typography>
           </Box>
         )}

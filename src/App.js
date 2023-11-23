@@ -11,6 +11,8 @@ import Movies from "./components/Movies/Movies";
 import AdminProfile from "./profile/AdminProfile";
 import UserProfile from "./profile/UserProfile";
 import { adminActions, userActions } from "./store";
+import UpdateUser from "./components/User/UpdateUser";
+import DeleteUser from "./components/User/DeleteUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +46,7 @@ function App() {
               {" "}
               <Route path="/user" element={<UserProfile />} />
               <Route path="/booking/:id" element={<Booking />} />
+              <Route path="/delete/:id" element={<DeleteUser />} />
             </>
           )}
           {isAdminLoggedIn && !isUserLoggedIn && (
